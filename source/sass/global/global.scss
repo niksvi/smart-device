@@ -68,3 +68,19 @@ button {
   letter-spacing: 0.05em;
   cursor: pointer;
 }
+
+.footer {
+  flex: 0 0 auto;
+}
+
+.no-js .footer__menu-dropdown--show {
+  @media (max-width: $mobile) {
+    display: block;
+  }
+}
+
+.no-js .footer__title::before {
+  @media (max-width: $mobile) {
+    display: none;
+  }
+}
