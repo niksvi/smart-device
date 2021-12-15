@@ -1,0 +1,70 @@
+html,
+body {
+  height: 100%;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-size: 16px;
+  line-height: 22px;
+  font-weight: 400;
+  font-family: "PT Mono", "Arial", sans-serif;
+  color: $main;
+  min-width: 320px;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  border: 0;
+  padding: 0;
+  white-space: nowrap;
+  clip-path: inset(100%);
+  clip: rect(0 0 0 0);
+  overflow: hidden;
+}
+
+.page {
+  display: flex;
+  flex-direction: column;
+  min-height: 100%;
+  position: relative;
+}
+
+.container {
+  max-width: 1416px;
+  padding: 0 15px;
+  margin: 0 auto;
+
+  @media (max-width: $desktop) {
+    padding: 0 25px;
+  }
+
+  @media (max-width: $tablet) {
+    padding: 0 15px;
+  }
+}
+
+button {
+  font-family: "Roboto Condensed", "Arial", sans-serif;
+  font-size: 14px;
+  line-height: 16px;
+  font-weight: 700;
+  color: $white;
+  background-color: transparent;
+  border: 1px solid $white;
+  border-radius: 5px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  cursor: pointer;
+}

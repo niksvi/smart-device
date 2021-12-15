@@ -1,3 +1,12 @@
-h1 {
-  color: red;
-}
+
+/// global
+
+@import "global/normalize.scss";
+@import "global/veriables.scss";
+@import "global/fonts.scss";
+@import "global/global.scss";
+
+/// blocks
+
+@import "blocks/header.scss";
+@import "blocks/promo.scss";
