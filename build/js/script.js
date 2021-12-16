@@ -4,7 +4,7 @@
   const menu = document.querySelectorAll('.footer__menu-dropdown');
   const menuBtns = document.querySelectorAll('.footer__title');
 
-  // fotter accordeon
+  // footer accordeon
 
   const hideMenu = () => {
     menu.forEach((item) => {

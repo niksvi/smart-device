@@ -74,13 +74,35 @@ button {
 }
 
 .no-js .footer__menu-dropdown--show {
-  @media (max-width: $mobile) {
+  @media (max-width: $tablet) {
     display: block;
   }
 }
 
 .no-js .footer__title::before {
-  @media (max-width: $mobile) {
+  @media (max-width: $tablet) {
     display: none;
+  }
+}
+
+.main {
+  flex: 1 0 auto;
+}
+
+.main__block {
+  background-image: url("../img/advant.svg");
+  background-repeat: no-repeat;
+  background-position-y: -30px;
+  background-position-x: calc(50% + -135px);
+
+  @media (max-width: $desktop) {
+    background-image: url("../img/advant-tablet.svg");
+    background-position-y: 244px;
+    background-position-x: calc(50% + 340px);
+  }
+
+  @media (max-width: $tablet) {
+    background-position-y: 805px;
+    background-position-x: calc(50% + 236px);
   }
 }
