@@ -21,7 +21,6 @@
     hideMenu();
   }
 
-
   menuBtns.forEach((item) => {
     item.addEventListener('click', () => {
       const parent = item.parentNode.parentNode;
