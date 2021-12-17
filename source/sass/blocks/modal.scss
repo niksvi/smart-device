@@ -1,0 +1,143 @@
+.modal {
+  max-width: 490px;
+  background-color: $main-alt;
+  padding: 30px 39px;
+  color: $white;
+  margin: 0 auto;
+  display: none;
+  position: fixed;
+  top: 50%;
+  transform: translateY(-50%);
+  right: 0;
+  left: 0;
+  z-index: 200;
+
+  &--open {
+    display: block;
+  }
+}
+
+.modal h2 {
+  font-family: "Roboto Condensed", "Arial", sans-serif;
+  font-weight: 400;
+  font-size: 28px;
+  line-height: 39px;
+  color: inherit;
+  margin: 0 0 12px 0;
+}
+
+.modal p {
+  font-size: 16px;
+  line-height: 22px;
+  color: inherit;
+  margin: 0 0 33px 0;
+}
+
+.modal__form-area {
+  margin: 0 0 32px 0;
+
+  &:last-of-type {
+    margin: 0 0 8px 0;
+  }
+}
+
+.modal input {
+  font-family: "PT Mono", "Arial", sans-serif;
+  color: $white;
+  background-color: rgba($white, 0.1);
+  border: none;
+  padding: 14px 20px;
+  width: 100%;
+  font-size: 16px;
+  line-height: 22px;
+  font-weight: 400;
+
+  &::placeholder {
+    font-family: "PT Mono", "Arial", sans-serif;
+    font-weight: 400;
+    color: $white;
+    font-size: 16px;
+    line-height: 22px;
+  }
+}
+
+.modal textarea {
+  font-family: "PT Mono", "Arial", sans-serif;
+  color: $white;
+  font-weight: 400;
+  width: 100%;
+  min-height: 104px;
+  resize: none;
+  background-color: rgba($white, 0.1);
+  border: none;
+  margin: 0 0 23px 0;
+  font-size: 16px;
+  line-height: 22px;
+  padding: 14px 20px;
+
+  &::placeholder {
+    font-family: "PT Mono", "Arial", sans-serif;
+    font-weight: 400;
+    color: $white;
+    font-size: 16px;
+    line-height: 22px;
+  }
+}
+
+.modal__button {
+  display: block;
+  width: 100%;
+  height: 47px;
+  padding: 0;
+  margin: 0 0 33px 0;
+}
+
+.modal__form-area input[type="checkbox"] + label {
+  font-size: 14px;
+  line-height: 16px;
+  color: rgba($white, 0.8);
+  position: relative;
+  padding: 0 0 0 52px;
+  width: 100%;
+  display: block;
+  margin: 0 24px 0 0;
+
+  &::before {
+    content: "";
+    position: absolute;
+    width: 16px;
+    height: 16px;
+    top: 0;
+    left: 0;
+    border: 1px solid $white;
+  }
+
+  @media (max-width: $desktop) {
+    width: 100%;
+  }
+}
+
+.modal__form-area input[type="checkbox"]:checked + label {
+  &::before {
+    background-image: url("../img/checked.svg");
+    background-repeat: no-repeat;
+    background-position: center;
+  }
+}
+
+.modal__close-button {
+  content: "";
+  position: absolute;
+  width: 17px;
+  height: 17px;
+  border: none;
+  padding: 0;
+  top: 20px;
+  right: 20px;
+  background-color: transparent;
+  cursor: pointer;
+}
+
+.modal__form-area input[type="checkbox"]:focus + label::before {
+  outline: auto;
+}

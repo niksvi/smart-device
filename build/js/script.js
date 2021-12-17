@@ -7,6 +7,35 @@
   const MASKED = '+7 (___) ___-__-__';
   const userInputsTel = document.querySelectorAll('.form__item--tel input');
 
+  const modal = document.querySelector('.modal');
+  const closeModalBtn = modal.querySelector('.modal__close-button');
+  const headerBtn = document.querySelector('.header__button');
+  const overlay = document.querySelector('.overlay');
+
+  const modalName = document.querySelector('[name=modal-name]');
+  const modalPhone = document.querySelector('[name=modal-phone]');
+  const modalComment = document.querySelector('[name=modal-comment]');
+  const modalForm = document.querySelector('.modal__form');
+
+  const footerRights = document.querySelector('.footer__bottom-item--rights');
+  const copyright = document.querySelector('.footer__copyright').innerHTML;
+
+
+  // localStorage
+
+  let isStorage = true;
+  let nameStorage = '';
+  let phoneStorage = '';
+  let commentStorage = '';
+
+  try {
+    nameStorage = localStorage.getItem('nameStorage');
+    phoneStorage = localStorage.getItem('phoneStorage');
+    commentStorage = localStorage.getItem('commentStorage');
+  } catch (err) {
+    isStorage = false;
+  }
+
   // footer accordeon
 
   const hideMenu = () => {
@@ -82,4 +111,131 @@
       userInputTel.addEventListener('blur', checkMask);
     });
   }
+
+  // modal
+
+  const isEscEvent = (evt) => {
+    return evt.key === 'Escape' || evt.key === 'Esc';
+  };
+
+  const modalShow = () => {
+    overlay.classList.add('overlay--open');
+    modal.classList.add('modal--open');
+    body.classList.add('no-scroll');
+    modalName.focus();
+    modalClose();
+
+    if (nameStorage && phoneStorage) {
+      modalName.value = nameStorage;
+      modalPhone.value = phoneStorage;
+      modalComment.value = commentStorage;
+    }
+
+    if (modalForm) {
+      modalForm.addEventListener('submit', (evt) => {
+        if (!modalName.value || !modalPhone.value) {
+          evt.preventDefault();
+        } else {
+          if (isStorage) {
+            localStorage.setItem('nameStorage', modalName.value);
+            localStorage.setItem('phoneStorage', modalPhone.value);
+            localStorage.setItem('commentStorage', modalComment.value);
+          }
+        }
+      });
+    }
+  };
+
+  const modalClose = () => {
+    closeModalBtn.addEventListener('click', closeModalButton);
+    document.addEventListener('click', closeModalOverlay);
+    window.addEventListener('keydown', closeModalEsc);
+  };
+
+  headerBtn.addEventListener('click', modalShow);
+
+  const closeModalButton = () => {
+    overlay.classList.remove('overlay--open');
+    modal.classList.remove('modal--open');
+    body.classList.remove('no-scroll');
+
+    closeModalBtn.removeEventListener('click', closeModalButton);
+    document.removeEventListener('click', closeModalOverlay);
+    window.removeEventListener('keydown', closeModalEsc);
+  };
+
+  const closeModalOverlay = (evt) => {
+    let target = evt.target;
+    if (!target.closest('.header__button')) {
+      if (!target.closest('.modal')) {
+        overlay.classList.remove('overlay--open');
+        modal.classList.remove('modal--open');
+        body.classList.remove('no-scroll');
+
+        closeModalBtn.removeEventListener('click', closeModalButton);
+        document.removeEventListener('click', closeModalOverlay);
+        window.removeEventListener('keydown', closeModalEsc);
+      }
+    }
+  };
+
+  const closeModalEsc = (evt) => {
+    if (isEscEvent(evt)) {
+      if (modal.classList.contains('modal--open')) {
+        evt.stopPropagation();
+        overlay.classList.remove('overlay--open');
+        modal.classList.remove('modal--open');
+        body.classList.remove('no-scroll');
+
+        closeModalBtn.removeEventListener('click', closeModalButton);
+        document.removeEventListener('click', closeModalOverlay);
+        window.removeEventListener('keydown', closeModalEsc);
+      }
+    }
+  };
+
+
+  // tab in overlay
+
+  const trapFocus = (element) => {
+    var focusableEls = element.querySelectorAll('a[href]:not([disabled]), button:not([disabled]), textarea:not([disabled]), input[type="text"]:not([disabled]), input[type="radio"]:not([disabled]), input[type="checkbox"]:not([disabled]), select:not([disabled])');
+    var firstFocusableEl = focusableEls[0];
+    var lastFocusableEl = focusableEls[focusableEls.length - 1];
+    var KEYCODE_TAB = 9;
+
+    element.addEventListener('keydown', (evt) => {
+      var isTabPressed = (evt.key === 'Tab' || evt.keyCode === KEYCODE_TAB);
+
+      if (!isTabPressed) {
+        return;
+      }
+
+      if (evt.shiftKey) {
+        if (document.activeElement === firstFocusableEl) {
+          lastFocusableEl.focus();
+          evt.preventDefault();
+        }
+      } else {
+        if (document.activeElement === lastFocusableEl) {
+          firstFocusableEl.focus();
+          evt.preventDefault();
+        }
+      }
+    });
+  };
+
+  if (modal) {
+    trapFocus(modal);
+  }
+
+  // copyright
+
+  if (footerRights && copyright) {
+    footerRights.insertAdjacentHTML(
+        'afterend', `<li class="footer__bottom-item footer__bottom-item--copyright">
+      <a class="footer__bottom-link">${copyright}</a>
+    </li>`
+    );
+  }
+
 })();
