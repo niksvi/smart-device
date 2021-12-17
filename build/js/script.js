@@ -4,6 +4,9 @@
   const menu = document.querySelectorAll('.footer__menu-dropdown');
   const menuBtns = document.querySelectorAll('.footer__title');
 
+  const MASKED = '+7 (___) ___-__-__';
+  const userInputsTel = document.querySelectorAll('.form__item--tel input');
+
   // footer accordeon
 
   const hideMenu = () => {
@@ -40,4 +43,43 @@
       }
     });
   });
+
+  // Маска для телефона
+  if (userInputsTel) {
+    const checkMask = (evt) => {
+
+      const keyCode = evt.key;
+      const template = MASKED;
+      const templateNumbersValue = template.replace(/\D/g, '');
+      const inputNumbersValue = evt.target.value.replace(/\D/g, '');
+
+      let i = 0;
+      let newValue = template
+        .replace(/[_\d]/g, (a) => i < inputNumbersValue.length ? inputNumbersValue.charAt(i++) || templateNumbersValue.charAt(i) : a);
+
+      i = newValue.indexOf('_');
+
+      if (i !== -1) {
+        newValue = newValue.slice(0, i);
+      }
+
+      let reg = template.substring(0, evt.target.value.length)
+        .replace(/_+/g, (a) => `\\d{1,${ a.length}}`)
+        .replace(/[+()]/g, '\\$&'); reg = new RegExp(`^${reg}$`);
+
+      if (!reg.test(evt.target.value) || evt.target.value.length < 5 || keyCode > 47 && keyCode < 58) {
+        evt.target.value = newValue;
+      }
+
+      if (evt.type === 'blur' && evt.target.value.length < 5) {
+        evt.target.value = '';
+      }
+    };
+
+    userInputsTel.forEach((userInputTel) => {
+      userInputTel.addEventListener('input', checkMask);
+      userInputTel.addEventListener('focus', checkMask);
+      userInputTel.addEventListener('blur', checkMask);
+    });
+  }
 })();
