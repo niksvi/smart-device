@@ -77,7 +77,9 @@
 
   <main class="main">
     <h1 class="visually-hidden">Smart Device</h1>
+
     <div class="main__block">
+
       <section class="advantages" id="advant">
         <h2 class="visually-hidden">Преимущества</h2>
         <div class="container">
@@ -174,6 +176,7 @@
           </div>
         </div>
       </section>
+
       <section class="about">
         <div class="container">
           <div class="about__body">
@@ -193,8 +196,65 @@
         </div>
       </section>
     </div>
-    </div>
 
+    <section class="service">
+      <div class="container">
+        <div class="service__body">
+          <h2>Service Device предлагает следующие товары и услуги</h2>
+          <ul class="service__list">
+            <li class="service__item">
+              <a class="service__link" href="#">
+                <picture>
+                  <!-- 1х: 290px; 2x: 580px -->
+                  <source media="(max-width: 767px)" srcset="img/production-mob.webp 1x, img/production-mob@2x.webp 2x">
+                  <!-- 1х: 715px; 2x: 1430px -->
+                  <source media="(max-width: 1023px)"
+                    srcset="img/production-tablet.webp 1x, img/production-tablet@2x.webp 2x">
+                  <!-- 1х: 370px; 2x: 740px -->
+                  <source type="image/webp" srcset="img/production.webp 1x, img/production@2x.webp 2x">
+                  <!-- 1х: 370px; 2x: 740px -->
+                  <img src="img/production.jpg" srcset="img/production@2x.jpg 2x" alt="Станок изготовляет платы"
+                    width="370" height="620">
+                </picture>
+                <h3>Производство печатных плат</h3>
+              </a>
+            </li>
+            <li class="service__item">
+              <a class="service__link" href="#">
+                <picture>
+                  <!-- 1х: 290px; 2x: 580px -->
+                  <source media="(max-width: 767px)" srcset="img/install-mob.webp 1x, img/install-mob@2x.webp 2x">
+                  <!-- 1х: 715px; 2x: 1430px -->
+                  <source media="(max-width: 1023px)"
+                    srcset="img/install-tablet.webp 1x, img/install-tablet@2x.webp 2x">
+                  <!-- 1х: 370px; 2x: 740px -->
+                  <source type="image/webp" srcset="img/install.webp 1x, img/install@2x.webp 2x">
+                  <!-- 1х: 370px; 2x: 740px -->
+                  <img src="img/install.jpg" srcset="img/install@2x.jpg 2x" alt="Паяние план" width="370" height="620">
+                </picture>
+                <h3>Монтаж печатных плат</h3>
+              </a>
+            </li>
+            <li class="service__item">
+              <a class="service__link" href="#">
+                <picture>
+                  <!-- 1х: 290px; 2x: 580px -->
+                  <source media="(max-width: 767px)" srcset="img/light-mob.webp 1x, img/light-mob@2x.webp 2x">
+                  <!-- 1х: 715px; 2x: 1430px -->
+                  <source media="(max-width: 1023px)" srcset="img/light-tablet.webp 1x, img/light-tablet@2x.webp 2x">
+                  <!-- 1х: 370px; 2x: 740px -->
+                  <source type="image/webp" srcset="img/light.webp 1x, img/light@2x.webp 2x">
+                  <!-- 1х: 370px; 2x: 740px -->
+                  <img src="img/light.jpg" srcset="img/light@2x.jpg 2x" alt="Светодиодная лента" width="370"
+                    height="620">
+                </picture>
+                <h3>Комплектующие для светотехники</h3>
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </section>
   </main>
 
   <footer class="footer">

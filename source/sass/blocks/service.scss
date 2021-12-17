@@ -1,0 +1,151 @@
+.service {
+  background-color: $dark;
+}
+
+.service__body {
+  padding: 88px 0 98px;
+  max-width: 1170px;
+  margin: 0 auto;
+
+  @media (max-width: $desktop) {
+    padding: 50px 0 31px;
+  }
+
+  @media (max-width: $tablet) {
+    padding: 50px 0 33px;
+  }
+}
+
+.service__body h2 {
+  font-family: "Roboto Condensed", "Arial", sans-serif;
+  font-weight: 400;
+  font-size: 36px;
+  line-height: 51px;
+  color: $white;
+  margin: 0 0 50px 0;
+
+  @media (max-width: $desktop) {
+    font-size: 32px;
+    line-height: 45px;
+    max-width: 620px;
+  }
+
+  @media (max-width: $tablet) {
+    font-size: 28px;
+    line-height: 39px;
+    padding: 0 0 0 9px;
+    margin: 0 0 42px 0;
+  }
+}
+
+.service__list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+
+  @media (max-width: $desktop) {
+    display: block;
+  }
+}
+
+.service__item {
+  width: 31.62%;
+  min-height: 620px;
+  margin: 0 0 30px 0;
+
+  @media (max-width: $desktop) {
+    width: 100%;
+    min-height: 256px;
+    margin: 0 0 46px 0;
+  }
+
+  @media (max-width: $tablet) {
+    margin: 0 0 30px 0;
+  }
+}
+
+.service__item h3 {
+  font-family: "Roboto Condensed", "Arial", sans-serif;
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 30px;
+  color: $white;
+  position: relative;
+  z-index: 1;
+  width: 170px;
+  margin: 0;
+}
+
+.service__link {
+  text-decoration: none;
+  display: block;
+  width: 100%;
+  height: 100%;
+  padding: 53px 44px;
+  position: relative;
+
+  &::after {
+    content: "";
+    position: absolute;
+    width: 63px;
+    height: 63px;
+    background-color: $main-alt;
+    background-image: url("../img/arrow.svg");
+    background-position: center;
+    background-repeat: no-repeat;
+    bottom: 0;
+    right: 0;
+  }
+
+  @media (max-width: $desktop) {
+    min-height: 256px;
+    padding: 40px 45px 0 45px;
+  }
+
+  @media (max-width: $tablet) {
+    padding: 20px 35px;
+  }
+}
+
+.service__link:hover img {
+  opacity: 0.5;
+}
+
+.service__link:active img {
+  opacity: 0.1;
+}
+
+.service__link:active h3 {
+  color: rgba($white, 0.5);
+}
+
+.service__item:last-child .service__link {
+  @media (max-width: $desktop) {
+    min-height: 256px;
+    padding: 49px 45px 0 45px;
+  }
+
+  @media (max-width: $tablet) {
+    padding: 29px 36px 0 36px;
+  }
+}
+
+.service img {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  opacity: 0.2;
+  object-fit: cover;
+
+  @media (max-width: $desktop) {
+    height: 256px;
+  }
+}
