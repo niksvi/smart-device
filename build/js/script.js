@@ -5,7 +5,7 @@
   const menuBtns = document.querySelectorAll('.footer__title');
 
   const MASKED = '+7 (___) ___-__-__';
-  const userInputsTel = document.querySelectorAll('.form__item--tel input');
+  const userInputsTel = document.querySelectorAll('.form__tel input');
 
   const modal = document.querySelector('.modal');
   const closeModalBtn = modal.querySelector('.modal__close-button');
@@ -17,8 +17,8 @@
   const modalComment = document.querySelector('[name=modal-comment]');
   const modalForm = document.querySelector('.modal__form');
 
-  const footerRights = document.querySelector('.footer__bottom-item--rights');
-  const copyright = document.querySelector('.footer__copyright').innerHTML;
+  // const footerRights = document.querySelector('.footer__bottom-item--rights');
+  // const copyright = document.querySelector('.footer__copyright').innerHTML;
 
 
   // localStorage
@@ -37,41 +37,42 @@
   }
 
   // footer accordeon
+  if (menu && menuBtns && body) {
+    const hideMenu = () => {
+      menu.forEach((item) => {
+        item.classList.remove('footer__menu-dropdown--show');
+      });
 
-  const hideMenu = () => {
-    menu.forEach((item) => {
-      item.classList.remove('footer__menu-dropdown--show');
-    });
+      menuBtns.forEach((item) => {
+        item.classList.remove('footer__title--close');
+      });
+    };
+
+    if (noJs) {
+      body.classList.remove('no-js');
+      hideMenu();
+    }
 
     menuBtns.forEach((item) => {
-      item.classList.remove('footer__title--close');
-    });
-  };
+      item.addEventListener('click', () => {
+        const parent = item.parentNode.parentNode;
+        if (document.documentElement.clientWidth < 768) {
+          if (parent.querySelector('.footer__menu-dropdown').classList.contains('footer__menu-dropdown--show') && parent.querySelector('.footer__title').classList.contains('footer__title--close')) {
+            parent.querySelector('.footer__menu-dropdown').classList.remove('footer__menu-dropdown--show');
+            parent.querySelector('.footer__title').classList.remove('footer__title--close');
+          } else {
+            document.querySelectorAll('.footer__dropdown').forEach((child) => {
+              child.querySelector('.footer__menu-dropdown').classList.remove('footer__menu-dropdown--show');
+              child.querySelector('.footer__title').classList.remove('footer__title--close');
 
-  if (noJs) {
-    body.classList.remove('no-js');
-    hideMenu();
-  }
-
-  menuBtns.forEach((item) => {
-    item.addEventListener('click', () => {
-      const parent = item.parentNode.parentNode;
-      if (document.documentElement.clientWidth < 768) {
-        if (parent.querySelector('.footer__menu-dropdown').classList.contains('footer__menu-dropdown--show') && parent.querySelector('.footer__title').classList.contains('footer__title--close')) {
-          parent.querySelector('.footer__menu-dropdown').classList.remove('footer__menu-dropdown--show');
-          parent.querySelector('.footer__title').classList.remove('footer__title--close');
-        } else {
-          document.querySelectorAll('.footer__dropdown').forEach((child) => {
-            child.querySelector('.footer__menu-dropdown').classList.remove('footer__menu-dropdown--show');
-            child.querySelector('.footer__title').classList.remove('footer__title--close');
-
-            parent.querySelector('.footer__menu-dropdown').classList.add('footer__menu-dropdown--show');
-            parent.querySelector('.footer__title').classList.add('footer__title--close');
-          });
+              parent.querySelector('.footer__menu-dropdown').classList.add('footer__menu-dropdown--show');
+              parent.querySelector('.footer__title').classList.add('footer__title--close');
+            });
+          }
         }
-      }
+      });
     });
-  });
+  }
 
   // Маска для телефона
   if (userInputsTel) {
@@ -117,82 +118,85 @@
   const isEscEvent = (evt) => {
     return evt.key === 'Escape' || evt.key === 'Esc';
   };
+  if (overlay && modal && body && modalName && modalPhone && modalComment && closeModalBtn) {
+    const modalShow = () => {
+      overlay.classList.add('overlay--open');
+      modal.classList.add('modal--open');
+      body.classList.add('no-scroll');
+      modalName.focus();
+      modalClose();
 
-  const modalShow = () => {
-    overlay.classList.add('overlay--open');
-    modal.classList.add('modal--open');
-    body.classList.add('no-scroll');
-    modalName.focus();
-    modalClose();
+      if (nameStorage && phoneStorage) {
+        modalName.value = nameStorage;
+        modalPhone.value = phoneStorage;
+        modalComment.value = commentStorage;
+      }
 
-    if (nameStorage && phoneStorage) {
-      modalName.value = nameStorage;
-      modalPhone.value = phoneStorage;
-      modalComment.value = commentStorage;
-    }
-
-    if (modalForm) {
-      modalForm.addEventListener('submit', (evt) => {
-        if (!modalName.value || !modalPhone.value) {
-          evt.preventDefault();
-        } else {
-          if (isStorage) {
-            localStorage.setItem('nameStorage', modalName.value);
-            localStorage.setItem('phoneStorage', modalPhone.value);
-            localStorage.setItem('commentStorage', modalComment.value);
+      if (modalForm) {
+        modalForm.addEventListener('submit', (evt) => {
+          if (!modalName.value || !modalPhone.value) {
+            evt.preventDefault();
+          } else {
+            if (isStorage) {
+              localStorage.setItem('nameStorage', modalName.value);
+              localStorage.setItem('phoneStorage', modalPhone.value);
+              localStorage.setItem('commentStorage', modalComment.value);
+            }
           }
+        });
+      }
+    };
+
+    const modalClose = () => {
+      closeModalBtn.addEventListener('click', closeModalButton);
+      document.addEventListener('click', closeModalOverlay);
+      window.addEventListener('keydown', closeModalEsc);
+    };
+
+    if (headerBtn) {
+      headerBtn.addEventListener('click', modalShow);
+    }
+
+    const closeModalButton = () => {
+      overlay.classList.remove('overlay--open');
+      modal.classList.remove('modal--open');
+      body.classList.remove('no-scroll');
+
+      closeModalBtn.removeEventListener('click', closeModalButton);
+      document.removeEventListener('click', closeModalOverlay);
+      window.removeEventListener('keydown', closeModalEsc);
+    };
+
+    const closeModalOverlay = (evt) => {
+      let target = evt.target;
+      if (!target.closest('.header__button')) {
+        if (!target.closest('.modal')) {
+          overlay.classList.remove('overlay--open');
+          modal.classList.remove('modal--open');
+          body.classList.remove('no-scroll');
+
+          closeModalBtn.removeEventListener('click', closeModalButton);
+          document.removeEventListener('click', closeModalOverlay);
+          window.removeEventListener('keydown', closeModalEsc);
         }
-      });
-    }
-  };
-
-  const modalClose = () => {
-    closeModalBtn.addEventListener('click', closeModalButton);
-    document.addEventListener('click', closeModalOverlay);
-    window.addEventListener('keydown', closeModalEsc);
-  };
-
-  headerBtn.addEventListener('click', modalShow);
-
-  const closeModalButton = () => {
-    overlay.classList.remove('overlay--open');
-    modal.classList.remove('modal--open');
-    body.classList.remove('no-scroll');
-
-    closeModalBtn.removeEventListener('click', closeModalButton);
-    document.removeEventListener('click', closeModalOverlay);
-    window.removeEventListener('keydown', closeModalEsc);
-  };
-
-  const closeModalOverlay = (evt) => {
-    let target = evt.target;
-    if (!target.closest('.header__button')) {
-      if (!target.closest('.modal')) {
-        overlay.classList.remove('overlay--open');
-        modal.classList.remove('modal--open');
-        body.classList.remove('no-scroll');
-
-        closeModalBtn.removeEventListener('click', closeModalButton);
-        document.removeEventListener('click', closeModalOverlay);
-        window.removeEventListener('keydown', closeModalEsc);
       }
-    }
-  };
+    };
 
-  const closeModalEsc = (evt) => {
-    if (isEscEvent(evt)) {
-      if (modal.classList.contains('modal--open')) {
-        evt.stopPropagation();
-        overlay.classList.remove('overlay--open');
-        modal.classList.remove('modal--open');
-        body.classList.remove('no-scroll');
+    const closeModalEsc = (evt) => {
+      if (isEscEvent(evt)) {
+        if (modal.classList.contains('modal--open')) {
+          evt.stopPropagation();
+          overlay.classList.remove('overlay--open');
+          modal.classList.remove('modal--open');
+          body.classList.remove('no-scroll');
 
-        closeModalBtn.removeEventListener('click', closeModalButton);
-        document.removeEventListener('click', closeModalOverlay);
-        window.removeEventListener('keydown', closeModalEsc);
+          closeModalBtn.removeEventListener('click', closeModalButton);
+          document.removeEventListener('click', closeModalOverlay);
+          window.removeEventListener('keydown', closeModalEsc);
+        }
       }
-    }
-  };
+    };
+  }
 
 
   // tab in overlay
@@ -228,7 +232,7 @@
     trapFocus(modal);
   }
 
-  // copyright
+  /* // copyright
 
   if (footerRights && copyright) {
     footerRights.insertAdjacentHTML(
@@ -237,5 +241,5 @@
     </li>`
     );
   }
-
+*/
 })();

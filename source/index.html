@@ -50,7 +50,7 @@
           <div class="promo__content">
             <h2>Печатные платы</h2>
             <p>производство и монтаж, поставка комплектующих, блоков и модулей</p>
-            <a class="promo__button button" href="#form">
+            <a class="promo__button" href="#form">
               <span class="promo__button-desktop">Получить бесплатную консультацию</span>
               <span class="promo__button-mobile">Бесплатная консультация</span>
             </a>
@@ -277,7 +277,7 @@
                   <label class="visually-hidden" for="page-name">Введите имя</label>
                   <input type="text" placeholder="Имя" id="page-name" name="page-name" required>
                 </div>
-                <div class="form__area form__item--tel">
+                <div class="form__area form__tel">
                   <label class="visually-hidden" for="page-phone">Введите номер телефона</label>
                   <input type="tel" placeholder="Телефон" id="page-phone" name="page-phone" pattern="^\+?[\d()\- ]+$"
                     minlength="18" required>
@@ -288,7 +288,7 @@
                 <textarea placeholder="Ваш вопрос" id="page-comment" name="page-comment"></textarea>
               </div>
               <div class="form__area-wrapper">
-                <button class="form__button" type="submit">Задать вопрос</button>
+                <button class="form__button button" type="submit">Задать вопрос</button>
                 <div class="form__area form__area--checkbox">
                   <input class="visually-hidden" type="checkbox" id="page-checkbox" name="page-checkbox" tabindex="0"
                     required>
@@ -393,7 +393,9 @@
           <li class="footer__bottom-item footer__bottom-item--rights">
             <a class="footer__bottom-link footer__bottom-link--active" href="#">Все права защищены</a>
           </li>
-
+          <li class="footer__bottom-item footer__bottom-item--copyright">
+            <a class="footer__bottom-link footer__bottom-link--active" href="#">1999-2018 SD Service Devices</a>
+          </li>
           <li class="footer__bottom-item footer__bottom-item--confidentiality">
             <a class="footer__bottom-link footer__bottom-link--active" href="#">Условия
               конфиденциальности</a>
@@ -412,7 +414,7 @@
     <h2>Закажите звонок</h2>
     <p>Оставьте контакты, мы проконсультируем вас бесплатно в удобное время</p>
     <form class="modal__form" action="https://echo.htmlacademy.ru/" method="post" target="_blank">
-      <button class="modal__close-button" type="button">
+      <button class="modal__close-button button" type="button">
         <svg width="17" height="17" viewBox="0 0 17 17" fill="none" xmlns="http://www.w3.org/2000/svg">
           <path fill-rule="evenodd" clip-rule="evenodd"
             d="M0.146522 0.853553C-0.04874 0.658291 -0.04874 0.341709 0.146522 0.146447C0.341784 -0.0488155 0.658367 -0.0488156 0.853629 0.146447L8.27821 7.57103L15.7028 0.14645C15.8981 -0.0488124 16.2146 -0.0488125 16.4099 0.14645C16.6052 0.341712 16.6052 0.658294 16.4099 0.853556L8.98532 8.27814L16.41 15.7028C16.6052 15.8981 16.6052 16.2146 16.41 16.4099C16.2147 16.6052 15.8981 16.6052 15.7029 16.4099L8.27821 8.98525L0.853553 16.4099C0.658291 16.6052 0.341709 16.6052 0.146447 16.4099C-0.0488155 16.2146 -0.0488156 15.8981 0.146447 15.7028L7.57111 8.27814L0.146522 0.853553Z"
@@ -423,14 +425,14 @@
         <label class="visually-hidden" for="modal-name">Введите имя</label>
         <input type="text" placeholder="Имя" id="modal-name" name="modal-name" required>
       </div>
-      <div class="modal__form-area form__item--tel">
+      <div class="modal__form-area form__tel">
         <label class="visually-hidden" for="modal-phone">Введите телефон</label>
         <input type="tel" placeholder="Телефон" id="modal-phone" name="modal-phone" pattern="^\+?[\d()\- ]+$"
           minlength="18" required>
       </div>
       <label class="visually-hidden" for="modal-comment"></label>
       <textarea placeholder="Ваш вопрос" id="modal-comment" name="modal-comment"></textarea>
-      <button class="modal__button" type="submit">Отправить</button>
+      <button class="modal__button button" type="submit">Отправить</button>
       <div class="modal__form-area">
         <input class="visually-hidden" type="checkbox" id="modal-checkbox" name="modal-checkbox" tabindex="0" required>
         <label for="modal-checkbox">Я согласен на обработку персональных данных</label>
