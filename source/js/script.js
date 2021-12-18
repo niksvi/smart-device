@@ -17,10 +17,6 @@
   const modalComment = document.querySelector('[name=modal-comment]');
   const modalForm = document.querySelector('.modal__form');
 
-  // const footerRights = document.querySelector('.footer__bottom-item--rights');
-  // const copyright = document.querySelector('.footer__copyright').innerHTML;
-
-
   // localStorage
 
   let isStorage = true;
@@ -231,15 +227,4 @@
   if (modal) {
     trapFocus(modal);
   }
-
-  /* // copyright
-
-  if (footerRights && copyright) {
-    footerRights.insertAdjacentHTML(
-        'afterend', `<li class="footer__bottom-item footer__bottom-item--copyright">
-      <a class="footer__bottom-link">${copyright}</a>
-    </li>`
-    );
-  }
-*/
 })();
