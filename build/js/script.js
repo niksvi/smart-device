@@ -5,7 +5,7 @@
   const menuBtns = document.querySelectorAll('.footer__title');
 
   const MASKED = '+7 (___) ___-__-__';
-  const userInputsTel = document.querySelectorAll('.form__tel input');
+  const userInputsTel = document.querySelectorAll('.mask-tel input');
 
   const modal = document.querySelector('.modal');
   const closeModalBtn = modal.querySelector('.modal__close-button');
@@ -16,10 +16,6 @@
   const modalPhone = document.querySelector('[name=modal-phone]');
   const modalComment = document.querySelector('[name=modal-comment]');
   const modalForm = document.querySelector('.modal__form');
-
-  // const footerRights = document.querySelector('.footer__bottom-item--rights');
-  // const copyright = document.querySelector('.footer__copyright').innerHTML;
-
 
   // localStorage
 
@@ -231,15 +227,4 @@
   if (modal) {
     trapFocus(modal);
   }
-
-  /* // copyright
-
-  if (footerRights && copyright) {
-    footerRights.insertAdjacentHTML(
-        'afterend', `<li class="footer__bottom-item footer__bottom-item--copyright">
-      <a class="footer__bottom-link">${copyright}</a>
-    </li>`
-    );
-  }
-*/
 })();

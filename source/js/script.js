@@ -5,7 +5,7 @@
   const menuBtns = document.querySelectorAll('.footer__title');
 
   const MASKED = '+7 (___) ___-__-__';
-  const userInputsTel = document.querySelectorAll('.form__tel input');
+  const userInputsTel = document.querySelectorAll('.mask-tel input');
 
   const modal = document.querySelector('.modal');
   const closeModalBtn = modal.querySelector('.modal__close-button');
